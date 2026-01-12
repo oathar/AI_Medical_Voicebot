@@ -9,12 +9,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def record_audio(file_path, timeout=20, phrase_time_limit=None):
     """
-    Simplified function to record audio from the microphone and save it as an MP3 file.
+    Simplified function to record audio from the microphone and save it as a WAV file.
 
     Args:
     file_path (str): Path to save the recorded audio file.
     timeout (int): Maximum time to wait for a phrase to start (in seconds).
-    phrase_time_lfimit (int): Maximum time for the phrase to be recorded (in seconds).
+    phrase_time_limit (int): Maximum time for the phrase to be recorded (in seconds).
     """
     recognizer = sr.Recognizer()
     
@@ -34,12 +34,29 @@ def record_audio(file_path, timeout=20, phrase_time_limit=None):
             audio_segment.export(file_path, format="wav")
             
             logging.info(f"Audio saved to {file_path}")
+            
+            # Transcribe the audio
+            try:
+                text = recognizer.recognize_google(audio_data)
+                logging.info(f"Transcription: {text}")
+                return text
+            except sr.UnknownValueError:
+                logging.error("Could not understand the audio")
+                return None
+            except sr.RequestError as e:
+                logging.error(f"Could not request results from Google Speech Recognition service; {e}")
+                return None
 
     except Exception as e:
         logging.error(f"An error occurred: {e}")
+        return None
 
 audio_filepath="patient_voice_test_for_patient.wav"
-record_audio(file_path=audio_filepath)
+transcription = record_audio(file_path=audio_filepath)
+if transcription:
+    print(f"Patient's voice transcription: {transcription}")
+else:
+    print("No transcription available.")
 
 
 #Step2: Setup Speech to text–STT–model for transcription
