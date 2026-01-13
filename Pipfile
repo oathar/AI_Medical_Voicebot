@@ -9,6 +9,8 @@ ffmpeg = "*"
 pyaudio = "*"
 speechrecognition = "*"
 pydub = "*"
+gtts = "*"
+elevenlabs = "*"
 
 [dev-packages]
 
