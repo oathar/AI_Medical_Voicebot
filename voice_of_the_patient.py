@@ -51,13 +51,7 @@ def record_audio(file_path, timeout=20, phrase_time_limit=None):
         logging.error(f"An error occurred: {e}")
         return None
 
-audio_filepath="patient_voice_test_for_patient.wav"
-transcription = record_audio(file_path=audio_filepath)
-if transcription:
-    print(f"Patient's voice transcription: {transcription}")
-else:
-    print("No transcription available.")
-
+# Test code moved to if __name__ == "__main__" block
 
 #Step2: Setup Speech to text–STT–model for transcription
 import os
@@ -77,3 +71,11 @@ def transcribe_with_groq(stt_model, audio_filepath, GROQ_API_KEY):
     )
 
     return transcription.text
+
+if __name__ == "__main__":
+    audio_filepath="patient_voice_test_for_patient.wav"
+    transcription = record_audio(file_path=audio_filepath)
+    if transcription:
+        print(f"Patient's voice transcription: {transcription}")
+    else:
+        print("No transcription available.")

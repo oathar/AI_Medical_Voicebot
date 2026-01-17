@@ -12,6 +12,7 @@ pydub = "*"
 gtts = "*"
 elevenlabs = "*"
 pygame = "*"
+gradio = "*"
 
 [dev-packages]
 

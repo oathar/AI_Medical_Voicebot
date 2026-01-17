@@ -57,8 +57,9 @@ def text_to_speech_with_gtts(input_text, output_filepath):
         pygame.time.wait(100)
 
 
-input_text="Hi this is Ai with Athar, autoplay testing with gTTS and ElevenLabs."
-# text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
+input_text="Hi this is Ai with Athar, autoplay testing with gTTS and ElevenLabs. How are you?"
+
+text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
 
 
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
