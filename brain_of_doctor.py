@@ -17,7 +17,7 @@ from groq import Groq
 query="What skin condition is shown in this image?"
 model="meta-llama/llama-4-maverick-17b-128e-instruct"
 
-def analyze_image_with_query(query, model, encode_image):
+def analyze_image_with_query(query, model, encoded_image):
     
     client = Groq(api_key=GROQ_API_KEY)
     messages=[{

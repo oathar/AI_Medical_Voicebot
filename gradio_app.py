@@ -19,13 +19,16 @@ system_prompt="""You have to act as a professional doctor, i know you are not bu
 
 
 def process_inputs(audio_filepath, image_filepath):
+    if not audio_filepath:
+        return "Error: Please record audio", "Error: No audio provided", None
+    
     speech_to_text_output = transcribe_with_groq(GROQ_API_KEY=os.environ.get("GROQ_API_KEY"), 
     audio_filepath=audio_filepath,
     stt_model="whisper-large-v3")
 
     # Handle the image input
     if image_filepath:
-        doctor_response = analyze_image_with_query(query=system_prompt+speech_to_text_output, encoded_image=encode_image(image_filepath), model="meta-llama/llama-4-maverick-17b-128e-instruct") #model="meta-llama/llama-4-maverick-17b-128e-instruct") 
+        doctor_response = analyze_image_with_query(query=system_prompt+speech_to_text_output, encoded_image=encode_image(image_filepath), model="meta-llama/llama-4-maverick-17b-128e-instruct")
     else:
         doctor_response = "No image provided for me to analyze"
 
