@@ -57,9 +57,7 @@ def text_to_speech_with_gtts(input_text, output_filepath):
         pygame.time.wait(100)
 
 
-input_text="Hi this is Ai with Athar, autoplay testing with gTTS and ElevenLabs. How are you?"
-
-text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
+# Test code moved to if __name__ == "__main__" block
 
 
 def text_to_speech_with_elevenlabs(input_text, output_filepath):
@@ -78,4 +76,8 @@ def text_to_speech_with_elevenlabs(input_text, output_filepath):
     while pygame.mixer.music.get_busy():
         pygame.time.wait(100)
 
-text_to_speech_with_elevenlabs(input_text, output_filepath="elevenlabs_testing_autoplay.mp3")
+
+if __name__ == "__main__":
+    input_text="Hi this is Ai with Athar, autoplay testing with gTTS and ElevenLabs. How are you?"
+    text_to_speech_with_gtts(input_text=input_text, output_filepath="gtts_testing_autoplay.mp3")
+    text_to_speech_with_elevenlabs(input_text, output_filepath="elevenlabs_testing_autoplay.mp3")
